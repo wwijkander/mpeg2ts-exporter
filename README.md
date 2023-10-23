@@ -5,7 +5,7 @@ Prometheus exporter for MPEG-TS metrics from multicast IPTV streams. Currently s
 
 Name | Description
 --- | ---
-iptv_cc_errors | Number of times in a group where the continuity count value was not the proper iteration or the same as the previous packet
+iptv_cc_errors | Number of times in a group where the continuity count value was not the proper iteration or the same as the previous packet, indicating packet loss
 iptv_duplicate_cc_errors | Number of times in a group where the continuity count value was the same as the previous packet
-iptv_pat_errors | Number of times in a group where the required PAT packet was not transmitted at least twice a second
+iptv_pat_errors | Number of times in a group where the required PAT packet was not transmitted at least twice a second, indicating packet loss
 iptv_payload_bitrate | Bitrate for group, excluding UDP and below headers, including MPEG-TS headers and payload
