@@ -27,12 +27,18 @@ go build
 # Running
 
 Usage of ./mpeg2ts-exporter:
+
   -groups string
+
         comma separated list of multicast groups to work on (default "239.24.9.13")
+
   -interface string
+
         The interface on which the program should run on. (default "enp3s0")
+
   -queueid int
-        The ID of the Rx queue to which to attach to on the network link.
+
+        The ID of the Rx queue to which to attach to on the network link. (default 0)
 
 The metrics server will listen on port 2112.
 
