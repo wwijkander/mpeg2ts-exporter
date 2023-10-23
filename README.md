@@ -16,7 +16,9 @@ Uses AF_XDP to bypass kernel network stack and as a result requires a fairly rec
 
 # Building
 
-Requires clang, libbpf, and kernel headers
+Requires clang, libbpf, and kernel headers.
+
+TODO: It is assumed that your IPTV stream is on UDP port 2058,5000,5500 or 5555. If this is not the case you will have to edit `mpeg2ts-exporter-xdp.c` before compiling, for now.
 
 ```
 cd mpeg2ts-exporter
