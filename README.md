@@ -3,7 +3,7 @@
 
 Prometheus exporter for MPEG-TS metrics from multicast IPTV streams. 
 
-Implements a subset of ETSI TR 101 290,  "Digital Video Broadcasting (DVB); Measurement guidelines for DVB systems". Currently supported metrics:
+Implements a subset of ETSI technical report 101 290,  "Digital Video Broadcasting (DVB); Measurement guidelines for DVB systems". Currently supported metrics:
 
 Name | Description
 --- | ---
@@ -16,9 +16,11 @@ Uses AF_XDP to bypass kernel network stack and as a result requires a fairly rec
 
 # Building
 
-Requires clang, libbpf, and kernel headers.
+Requires go, clang, libbpf, and kernel headers.
 
 TODO: It is assumed that your IPTV stream is on UDP port 2058,5000,5500 or 5555. If this is not the case you will have to edit `mpeg2ts-exporter-xdp.c` before compiling, for now.
+
+To build, do something similar to this:
 
 ```
 cd mpeg2ts-exporter
