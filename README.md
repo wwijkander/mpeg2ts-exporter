@@ -12,7 +12,7 @@ iptv_duplicate_cc_errors | Number of times in a group where the continuity count
 iptv_pat_errors | Number of times in a group where the required PAT packet was not transmitted at least twice a second, indicating packet loss
 iptv_payload_bitrate | Bitrate for group, excluding UDP and below headers, including MPEG-TS headers and payload
 
-Uses AF_XDP to bypass kernel network stack and as a result requires a recent Linux to run.
+Uses AF_XDP to bypass kernel network stack and as a result requires a fairly recent Linux to run.
 
 # Building
 
@@ -26,19 +26,7 @@ go build
 
 # Running
 
-Usage of ./mpeg2ts-exporter:
-
-  -groups string
-
-        comma separated list of multicast groups to work on (default "239.24.9.13")
-
-  -interface string
-
-        The interface on which the program should run on. (default "enp3s0")
-
-  -queueid int
-
-        The ID of the Rx queue to which to attach to on the network link. (default 0)
+See `mpeg2ts-exporter --help`.
 
 The metrics server will listen on port 2112.
 
@@ -72,4 +60,4 @@ The XDP program will sometimes seemingly fail to replace the previously loaded X
 ```
 ip l set enp2s0 xdp off
 ```
-before starting anew.
+before starting mpeg2ts-exporter anew.
