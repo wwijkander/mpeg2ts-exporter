@@ -1,0 +1,8 @@
+mpeg2ts-exporter-xdp.o
+mpeg2ts-exporter-xdp-flow-director.o
+*.swp
+boneyard
+vmlinux.h
+mpeg2ts-exporter
+.old*
+TODO
