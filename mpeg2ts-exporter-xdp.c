@@ -39,6 +39,7 @@ int xdp_mpeg2ts_exporter_prog(struct xdp_md *ctx) {
 	struct ipv6hdr *ipv6hdr;
 	struct udphdr *udphdr;
         int *qidconf, index = ctx->rx_queue_index;
+        ip_type = 0;
 
         // if XSK bound to queue(i.e. userspace program is running)
         // and traffic is to correct UDP port, send to XSK
@@ -51,25 +52,24 @@ int xdp_mpeg2ts_exporter_prog(struct xdp_md *ctx) {
           eth_type = parse_ethhdr(&nh, data_end, &eth);
           if (eth_type == bpf_htons(ETH_P_IP)) {
             ip_type = parse_iphdr(&nh, data_end, &iphdr);
-              if (ip_type == IPPROTO_UDP) {
-                udp_destination = parse_udphdr_destination(&nh, data_end, &udphdr);
-                //if (udp_destination == bpf_htons(mpeg2tsport)) {
-                switch (udp_destination) {
-                  case bpf_htons(5000):
-                    return bpf_redirect_map(&xsks_map, index, XDP_PASS);
-                  case bpf_htons(5555):
-                    return bpf_redirect_map(&xsks_map, index, XDP_PASS);
-                  case bpf_htons(5500):
-                    return bpf_redirect_map(&xsks_map, index, XDP_PASS);
-                  case bpf_htons(2058):
-                    return bpf_redirect_map(&xsks_map, index, XDP_PASS);
-                  default:
-                    break;
-                }
-              }
-//          } else if (eth_type == bpf_htons(ETH_P_IPV6)) {
-//            ip_type = parse_ip6hdr(&nh, data_end, &ipv6hdr);
-//            if (ip_type == IPPROTO_UDPV6)
+          } else if (eth_type == bpf_htons(ETH_P_IPV6)) {
+            ip_type = parse_ip6hdr(&nh, data_end, &ipv6hdr);
+          }
+          if (ip_type == IPPROTO_UDP) {
+            udp_destination = parse_udphdr_destination(&nh, data_end, &udphdr);
+            //if (udp_destination == bpf_htons(mpeg2tsport)) {
+            switch (udp_destination) {
+              case bpf_htons(5000):
+                return bpf_redirect_map(&xsks_map, index, XDP_PASS);
+              case bpf_htons(5555):
+                return bpf_redirect_map(&xsks_map, index, XDP_PASS);
+              case bpf_htons(5500):
+                return bpf_redirect_map(&xsks_map, index, XDP_PASS);
+              case bpf_htons(2058):
+                return bpf_redirect_map(&xsks_map, index, XDP_PASS);
+              default:
+                break;
+            }
           }
         }
 
