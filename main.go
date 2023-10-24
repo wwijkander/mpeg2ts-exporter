@@ -80,10 +80,12 @@ func main() {
 	var ifaceName string
 	var queueID int
 	var groupsStr string
+	var xdpProgram string
 
 	flag.StringVar(&ifaceName, "interface", "enp3s0", "The interface on which the program should run on.")
-	flag.IntVar(&queueID, "queueid", 0, "The ID of the Rx queue to which to attach to on the network link.")
+	flag.IntVar(&queueID, "queueid", 0, "The ID of the Rx(or combined) queue to attach to on the network link. (default 0)")
 	flag.StringVar(&groupsStr, "groups", "239.24.9.13", "comma separated list of multicast groups to work on")
+	flag.StringVar(&xdpProgram, "xdp-program", "./mpeg2ts-exporter-xdp.o", "ELF binary to load on interface")
 	flag.Parse()
 
 	iface, err := net.InterfaceByName(ifaceName)
@@ -146,7 +148,7 @@ func main() {
 
 	var program *xdp.Program
 
-	program, err = xdp.LoadProgram("./mpeg2ts-exporter-xdp.o", "xdp_mpeg2ts_exporter_prog", "qidconf_map", "xsks_map")
+	program, err = xdp.LoadProgram(xdpProgram, "xdp_mpeg2ts_exporter_prog", "qidconf_map", "xsks_map")
 	if err != nil {
 		log.Fatalf("Failed to load xdp program: %v\n", err)
 	}
