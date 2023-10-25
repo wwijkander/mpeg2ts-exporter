@@ -73,3 +73,8 @@ Not great, not terrible. CPU pressure on a dedicated probe with a 2GHz Celeron J
 ```
 some avg10=4.32 avg60=4.80 avg300=4.93 total=670592782627
 ```
+
+## References
+
+[INTERNATIONAL STANDARD ISO/IEC 13818-1 RECOMMENDATION ITU-T H.222.0 (06/2021)](https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-H.222.0-202106-S!!PDF-E&type=items)
+[ETSI TR 101 290 V1.4.1 (2020-06)](https://www.etsi.org/deliver/etsi_tr/101200_101299/101290/01.04.01_60/tr_101290v010401p.pdf)
