@@ -65,3 +65,13 @@ The XDP program will sometimes seemingly fail to replace the previously loaded X
 ip l set enp2s0 xdp off
 ```
 before starting mpeg2ts-exporter anew.
+
+## Performance
+
+Not great, not terrible. On a dedicated probe with a 2GHz Celeron J4125 CPU:
+
+```
+some avg10=4.32 avg60=4.80 avg300=4.93 total=670592782627
+some avg10=0.00 avg60=0.00 avg300=0.00 total=0
+full avg10=0.00 avg60=0.00 avg300=0.00 total=0
+```
